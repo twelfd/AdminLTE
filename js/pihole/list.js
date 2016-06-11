@@ -73,48 +73,35 @@ function add() {
     var domain = $("#domain");
     if(domain.val().length === 0)
         return;
-
     var alInfo = $("#alInfo");
     var alSuccess = $("#alSuccess");
     var alFailure = $("#alFailure");
-    alInfo.show();
-    alSuccess.hide();
-    alFailure.hide();
+    $.blockUI({ message: '<h1>Processing</h1>',
+    											css: { border: '3px solid #FF0000'}});
     $.ajax({
         url: "php/add.php",
         method: "post",
         data: {"domain":domain.val(), "list":list_type, "token":token},
         success: function(response) {
           if (response == "1") {
-            alFailure.show();
-            alFailure.delay(1000).fadeOut(2000, function() {
-                alFailure.hide();
-            });
-            alInfo.delay(1000).fadeOut(2000, function() {
-                alInfo.hide();
-            });
-          } else {
-            alSuccess.show();
-            alSuccess.delay(1000).fadeOut(2000, function() {
-                alSuccess.hide();
-            });
-            alInfo.delay(1000).fadeOut(2000, function() {
-                alInfo.hide();
-            });
-            domain.val("");
-            refresh(true);
-          }
+            $.blockUI({ message:'<h1>Something went wrong...</h1>',
+                                    timeout: 2000,
+    											css: { border: '3px solid #FF0000'} 
+                                    });
+          } else{
+            $.blockUI({ message: '<h1>Success!</h1>',
+                                    timeout: 2000,
+    											css: { border: '3px solid #90D496'}
+                                    });
+          }         
         },
         error: function(jqXHR, exception) {
-            alFailure.show();
-            alFailure.delay(1000).fadeOut(2000, function() {
-                alFailure.hide();
-            });
-            alInfo.delay(1000).fadeOut(2000, function() {
-                alInfo.hide();
-            });
+              $.blockUI({ message:'<h1>Something went wrong...</h1>',
+                                    timeout: 2000,
+    											css: { border: '3px solid #FF0000'} 
+                                    });
         }
-    });
+    });    
 }
 
 function sub(index, entry) {
