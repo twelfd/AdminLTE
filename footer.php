@@ -23,6 +23,7 @@
 <script src="js/other/jquery.dataTables.min.js"></script>
 <script src="js/other/dataTables.bootstrap.min.js"></script>
 <script src="js/other/Chart.min.js"></script>
+<script src="js/other/jquery.blockUI.js"></script>
 
 <script src="js/pihole/footer.js"></script>
 
