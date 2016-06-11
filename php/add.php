@@ -18,9 +18,24 @@ if(!hash_equals($_SESSION['token'], $_POST['token']))
 
 switch($_POST['list']) {
     case "white":        
-        echo exec("sudo pihole -w -q ${_POST['domain']}");
+        echo getErrorCode(shell_exec(("sudo pihole -w ${_POST['domain']}")));
         break;
     case "black":
-        echo exec("sudo pihole -b -q ${_POST['domain']}");
+        echo getErrorCode(shell_exec(("sudo pihole -b ${_POST['domain']}")));
         break;
+}
+
+function getErrorCode($input)
+{
+	$array = preg_split('/\n+/', trim($input));
+	switch(true){
+		case stristr($array[1], 'already exists'):
+			return "1";
+			break;
+		case stristr($array[1], 'not a valid'):
+			return "1";
+			break;
+		default:
+		 return "0";		
+	}
 }
