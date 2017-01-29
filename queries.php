@@ -41,29 +41,6 @@ if(isset($setupVars["API_PRIVACY_MODE"]))
 <!-- Send PHP info to JS -->
 <div id="token" hidden><?php echo $token ?></div>
 
-
-<!--
-<div class="row">
-    <div class="col-md-12">
-        <button class="btn btn-info margin-bottom pull-right">Refresh Data</button>
-    </div>
-</div>
--->
-
-<!-- Alerts -->
-<div id="alInfo" class="alert alert-info alert-dismissible fade in" role="alert" hidden="true">
-    <button type="button" class="close" data-hide="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-    Adding <span id="alDomain"></span> to the <span id="alList"></span>...
-</div>
-<div id="alSuccess" class="alert alert-success alert-dismissible fade in" role="alert" hidden="true">
-    <button type="button" class="close" data-hide="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-    Success!
-</div>
-<div id="alFailure" class="alert alert-danger alert-dismissible fade in" role="alert" hidden="true">
-    <button type="button" class="close" data-hide="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-    Failure! Something went wrong.<span id="err"></span>
-</div>
-
 <div class="row">
     <div class="col-md-12">
       <div class="box" id="recent-queries">
@@ -100,9 +77,20 @@ if(isset($setupVars["API_PRIVACY_MODE"]))
         <!-- /.box-body -->
       </div>
       <!-- /.box -->
+      <div id="alInfo" class="alert alert-info alert-dismissible fade in" role="alert" hidden="true" style="position:fixed; top:60px;">
+        <button type="button" class="close" data-hide="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        Adding <span id="alDomain"></span> to the <span id="alList"></span>...
+      </div>
+      <div id="alSuccess" class="alert alert-success alert-dismissible fade in" role="alert" hidden="true" style="position:fixed; top:120px;">
+        <button type="button" class="close" data-hide="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        Success!
+      </div>
+      <div id="alFailure" class="alert alert-danger alert-dismissible fade in" role="alert" hidden="true" style="position:fixed; top:180px;">
+        <button type="button" class="close" data-hide="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        Failure! Something went wrong.<span id="err"></span>
+      </div>
     </div>
 </div>
-<!-- /.row -->
 
 <?php
     require "scripts/pi-hole/php/footer.php";
